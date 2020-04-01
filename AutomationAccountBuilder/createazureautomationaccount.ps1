@@ -226,9 +226,17 @@ if ($RoleAssignment.RoleDefinitionName -eq "Owner" -or $RoleAssignment.RoleDefin
 			Write-Output "Webhook URI stored in Azure Automation Acccount variables"
 			$WebhookURI = Get-AzAutomationVariable -Name "WebhookURI" -ResourceGroupName $ResourceGroupName -AutomationAccountName $AutomationAccountName -ErrorAction SilentlyContinue
 		}
+		$GroupSyncRunbook = New-AzResourceGroupDeployment -ResourceGroupName $ResourceGroupName -TemplateUri "$ScriptRepoLocation/GroupSyncRunbookTemplate.json" -existingAutomationAccountName $AutomationAccountName -RunbookName "GroupSyncRunbook" -Force -Verbose
+		if ($GroupSyncRunbook.ProvisioningState -eq "succeeded"){
+			$GroupSycWebhook = New-AzAutomationWebhook -Name "GroupSyncWebhook" -RunbookName "GroupSyncRunbook" -IsEnabled $True -ExpiryTime (Get-Date).AddYears(5) -ResourceGroupName $ResourceGroupName -AutomationAccountName $AutomationAccountName -Force
+			$URIofGroupSyncWebhook = $GroupSycWebhook.WebhookURI | Out-String
+			New-AzAutomationVariable -Name "GroupSyncWebhookURI" -Encrypted $false -ResourceGroupName $ResourceGroupName -AutomationAccountName $AutomationAccountName -Value $URIofGroupSyncWebhook
+			Write-Output "Webhook URI stored in Azure Automation Acccount variables"
+			$GroupSycWebhook = Get-AzAutomationVariable -Name "GroupSyncWebhookURI" -ResourceGroupName $ResourceGroupName -AutomationAccountName $AutomationAccountName -ErrorAction SilentlyContinue
+		}
 	}
-	New-AzResourceGroupDeployment -ResourceGroupName $ResourceGroupName -TemplateUri "$ScriptRepoLocation/runbookCreationTemplate.json" -existingAutomationAccountName $AutomationAccountName -RunbookName $RunbookName -Force -Verbose
-	New-AzResourceGroupDeployment -ResourceGroupName $ResourceGroupName -TemplateUri "$ScriptRepoLocation/GroupSyncRunbookTemplate.json" -existingAutomationAccountName $AutomationAccountName -RunbookName "GroupSync_Runbook" -Force -Verbose
+
+
 	#}
 	# Required modules imported from Automation Account Modules gallery for Scale Script execution
 	foreach ($Module in $RequiredModules) {
@@ -332,6 +340,7 @@ if ($RoleAssignment.RoleDefinitionName -eq "Owner" -or $RoleAssignment.RoleDefin
 	} else {
 		Write-Output "Automation Account Name:$AutomationAccountName"
 		Write-Output "Webhook URI: $($WebhookURI.value)"
+		Write-Output "Webhook URI: $($GroupSycWebhook.value)"
 	}
 }
 else
