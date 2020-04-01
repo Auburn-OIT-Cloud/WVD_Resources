@@ -1,0 +1,1 @@
+# WVD Manager powershell app used to manage your WVD instances
