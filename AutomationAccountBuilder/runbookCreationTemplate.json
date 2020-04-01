@@ -19,7 +19,7 @@
             "metadata": {
                 "description": "The base URI where artifacts required by this template are located."
             },
-            "defaultValue": "https://raw.githubusercontent.com/Auburn-OIT-Cloud/WVD_Resources/master/GroupSync/AzureAutomation/"
+            "defaultValue": "https://raw.githubusercontent.com/Auburn-OIT-Cloud/WVD_Resources/master/AutomationAccountBuilder/"
         },
         "_artifactsLocationSasToken": {
             "type": "securestring",
@@ -30,7 +30,7 @@
         }
     },
     "variables": {
-        "scriptUri": "[concat(parameters('_artifactsLocation'),'AzureAutomationGroupSyncScript.ps1')]",
+        "scriptUri": "[concat(parameters('_artifactsLocation'),'basicScale.ps1')]",
         "sku": "Free"
     },
     "resources": [
