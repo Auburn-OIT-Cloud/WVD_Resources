@@ -1,23 +1,14 @@
- # WVD group sync tool
- 
-_WVD_Group_SYNC.ps1_ Adds users in the AD group specified and removes user from the AppPool who are not in the AD group
- _WVD_Group_SYNC_no_Removal.ps1_ Adds users in the AD group specified but dose not remove users
-### Prerequisites 
-  * ActiveDirectory Powershell Module installed `Install-module -name activedirectory`
-        *This requires RSAT Tools to be installed*
-  * Windows Virtural Desktop Powershell module installed `Install-Module -Name Microsoft.RDInfra.RDPowerShell`    
-### Examples
+ # Automation Account Builder
+ This will create an automation account for both WVD scaling and groupSync
 
-```powershell
-.\WVD_Group_SYNC.ps1 -adGroupName "AdGroup" `
- -wvdTenantName "TenantName" `
- -wvdHostPoolName "Hostpoolname" `
- -wvdAppGroupName "AppGroupName"
- ```
- ```powershell
-.\WVD_Group_SYNC_No_Removal.ps1 -adGroupName "AdGroup" `
- -wvdTenantName "TenantName" `
- -wvdHostPoolName "Hostpoolname" `
- -wvdAppGroupName "AppGroupName"
- ```
-
+  1. Log into azure
+    ```PowerShell
+     Login-Azaccount
+     ```
+  1. Run the following script to download the the automation account builder script
+    ```powershell
+    Set-Location -Path "c:\temp"
+    $uri = "https://raw.githubusercontent.com/Auburn-OIT-Cloud/WVD_Resources/master/AutomationAccountBuilder/createazureautomationaccount.ps1"
+    Invoke-WebRequest -Uri $uri -OutFile ".\createazureautomationaccount.ps1"
+    ```
+  1. 
