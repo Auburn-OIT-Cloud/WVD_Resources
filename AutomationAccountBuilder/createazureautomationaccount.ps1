@@ -113,6 +113,8 @@ if ($RoleAssignment.RoleDefinitionName -eq "Owner" -or $RoleAssignment.RoleDefin
 		[pscustomobject]@{ ModuleName = 'Az.Resources'; ModuleVersion = '1.8.0' }
 		[pscustomobject]@{ ModuleName = 'Az.Automation'; ModuleVersion = '1.3.4' }
 		[pscustomobject]@{ ModuleName = 'AzureAD'; ModuleVersion = '2.0.2.76' }
+		[pscustomobject]@{ ModuleName = 'AzTable'; ModuleVersion = '2.0.2' }
+
 
 	)
 
