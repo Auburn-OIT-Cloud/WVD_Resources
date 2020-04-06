@@ -107,6 +107,7 @@ if ($RoleAssignment.RoleDefinitionName -eq "Owner" -or $RoleAssignment.RoleDefin
 
 	$RequiredModules = @(
 		[pscustomobject]@{ ModuleName = 'Az.Accounts'; ModuleVersion = '1.6.4' }
+		[pscustomobject]@{ ModuleName = 'Az.Storage'; ModuleVersion = '1.13.0' }
 		[pscustomobject]@{ ModuleName = 'Microsoft.RDInfra.RDPowershell'; ModuleVersion = '1.0.1288.1' }
 		[pscustomobject]@{ ModuleName = 'OMSIngestionAPI'; ModuleVersion = '1.6.0' }
 		[pscustomobject]@{ ModuleName = 'Az.Compute'; ModuleVersion = '3.1.0' }
@@ -114,6 +115,7 @@ if ($RoleAssignment.RoleDefinitionName -eq "Owner" -or $RoleAssignment.RoleDefin
 		[pscustomobject]@{ ModuleName = 'Az.Automation'; ModuleVersion = '1.3.4' }
 		[pscustomobject]@{ ModuleName = 'AzureAD'; ModuleVersion = '2.0.2.76' }
 		[pscustomobject]@{ ModuleName = 'AzTable'; ModuleVersion = '2.0.2' }
+
 
 
 	)
