@@ -26,7 +26,7 @@ $wvdAppGroupName = $Input.wvdAppGroupName
 
 import-module -name azuread
 $RDBrokerURL = "https://rdbroker.wvd.microsoft.com"
-$AadTenantId = "ccb6deed-bd29-4b38-8979-d72780f62d3b"
+$AadTenantId = "Enter Tenant ID"
 $connectionName = "AzureRunAsConnection"
 $servicePrincipalConnection = Get-AutomationConnection -Name $connectionName         
 Connect-AzureAD -TenantId $servicePrincipalConnection.TenantId `

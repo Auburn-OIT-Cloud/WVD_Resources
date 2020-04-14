@@ -26,7 +26,7 @@ $wvdAppGroupName = $Input.wvdAppGroupName
 
 import-module -name azuread
 $RDBrokerURL = "https://rdbroker.wvd.microsoft.com"
-$AadTenantId = "ccb6deed-bd29-4b38-8979-d72780f62d3b"
+$AadTenantId = "Tenant Id here"
 $connectionName = "AzureRunAsConnection"
 $servicePrincipalConnection = Get-AutomationConnection -Name $connectionName         
 Connect-AzureAD -TenantId $servicePrincipalConnection.TenantId `
@@ -42,7 +42,7 @@ $obid = (get-azureadgroup -filter "displayname eq '$adgroupname'").objectid
 
 
 # Get the list of AD Group and WVD App Group users
-$adgroupusers = (Get-AzureADGroupMember -objectid $obid | select-object userprincipalname).userPrincipalName
+$adgroupusers = (Get-AzureADGroupMember -objectid $obid -all | select-object userprincipalname).userPrincipalName
 $appGroupUsers = (Get-RdsAppGroupUser -TenantName $wvdTenantName -HostPoolName $wvdHostPoolName -AppGroupName $wvdAppGroupName).UserPrincipalName
 # Logic to check if source users are part of the target group, add them if not
 foreach ($adGroupUser in $adGroupUsers) {

@@ -343,8 +343,8 @@ if ($RoleAssignment.RoleDefinitionName -eq "Owner" -or $RoleAssignment.RoleDefin
 		Write-Output "Webhook URI: $($WebhookURI.value)"
 	} else {
 		Write-Output "Automation Account Name:$AutomationAccountName"
-		Write-Output "Webhook URI: $($WebhookURI.value)"
-		Write-Output "Webhook URI: $($GroupSycWebhook.value)"
+		Write-Output "Scaling Runbook Webhook URI: $($WebhookURI.value)"
+		Write-Output "GroupSync Runbook Webhook URI: $($GroupSycWebhook.value)"
 	}
 }
 else
