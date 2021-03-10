@@ -5,13 +5,13 @@
  ### How to deploy    
   1. Log into azure powershell. 
      ```Powershell
-     * Login-Azaccount
+       Login-Azaccount
      ```
   2. Run the following script to download the the automation account builder script
      ```Powershell
-     *  Set-Location -Path "c:\temp"
-     * $uri = "https://raw.githubusercontent.com/Auburn-OIT-Cloud/WVD_Resources/master/WVD_Scaling/CreateOrUpdateAzAutoAccount.ps1"
-     * Invoke-WebRequest -Uri $uri -OutFile ".\CreateOrUpdateAzAutoAccount.ps1"
+       Set-Location -Path "c:\temp"
+       $uri = "https://raw.githubusercontent.com/Auburn-OIT-Cloud/WVD_Resources/master/WVD_Scaling/CreateOrUpdateAzAutoAccount.ps1"
+       Invoke-WebRequest -Uri $uri -OutFile ".\CreateOrUpdateAzAutoAccount.ps1"
      ```
   3. Run the automation account script to create the automation account 
      ```powershell
